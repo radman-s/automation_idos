@@ -43,3 +43,7 @@ class IdosPage(BasePage):
         locator = Locator(By.XPATH, '(//h2[@class="reset date"])[3]')
         return BaseElement(driver=self.driver, locator=locator)
 
+    @property
+    def delay(self):
+        locator = Locator(By.CSS_SELECTOR, 'a[title="Poloha spoje"]')
+        return BaseElement(driver=self.driver, locator=locator)

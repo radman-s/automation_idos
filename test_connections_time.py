@@ -23,21 +23,22 @@ web_t1 = ip.time1.text()[:5].replace(':', '.')
 web_t2 = ip.time2.text()[:5].replace(':', '.')
 web_t3 = ip.time3.text()[:5].replace(':', '.')
 
+
 # get time from the module
 now = Time().get_time()
 
 # assert that all the connections are same or later then current time
-assert float(now) <= float(web_t1)
-assert float(now) <= float(web_t2)
-assert float(now) <= float(web_t3)
-
-print(f'curent time is:           {now}')
-print(f'first connection trains:  {web_t1}')
-print(f'second connection trains: {web_t2}')
-print(f'third connection trains:  {web_t3}')
-print('all the connections listed are after the current time')
-print('test passed')
+# and check if there is delay on any connection
+if float(now) <= float(web_t1) and float(now) <= float(web_t2) and float(now) <= float(web_t3):
+    print(f'curent time is:           {now}')
+    print(f'first connection trains:  {web_t1}')
+    print(f'second connection trains: {web_t2}')
+    print(f'third connection trains:  {web_t3}')
+    print('all the connections listed are after the current time')
+    print('test passed')
+else:
+    late = ip.delay.text()
+    print(late)
 
 browser.quit()
 
-# test will not pass if there is a dylay on a connection

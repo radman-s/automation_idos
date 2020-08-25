@@ -18,27 +18,23 @@ ip.to_search.arrow_down()
 ip.to_search.enter()
 ip.search_button.click()
 
-# get times from first three connections
-web_t1 = ip.time1.text()[:5].replace(':', '.')
-web_t2 = ip.time2.text()[:5].replace(':', '.')
-web_t3 = ip.time3.text()[:5].replace(':', '.')
-
-
 # get time from the module
 now = Time().get_time()
 
-# assert that all the connections are same or later then current time
 # and check if there is delay on any connection
-if float(now) <= float(web_t1) and float(now) <= float(web_t2) and float(now) <= float(web_t3):
-    print(f'curent time is:           {now}')
-    print(f'first connection trains:  {web_t1}')
-    print(f'second connection trains: {web_t2}')
-    print(f'third connection trains:  {web_t3}')
-    print('all the connections listed are after the current time')
-    print('test passed')
-else:
-    late = ip.delay.text()
-    print(late)
+first_con = ip.time1.get_time_format()
+second_con = ip.time2.get_time_format()
+third_con = ip.time2.get_time_format()
 
+# validate that three first connections listed are passed current time
+assert first_con >= now and second_con >= now and third_con >= now
+
+print(f'current time           {now}')
+print(f'first connection time: {first_con}')
+print(f'second connection time:{second_con}')
+print(f'third connection time: {third_con}')
+print('all the connections are passed current time')
+print('test passed')
 browser.quit()
 
+# test will not pass if there is a delay on a connection and therefore is passed current time

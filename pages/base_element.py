@@ -39,3 +39,11 @@ class BaseElement(object):
         element = ActionChains(self.driver)
         element.send_keys(Keys.ARROW_DOWN).perform()
         return None
+
+    def get_time_format(self):
+        time = self.web_element.text[:5]
+        return time.replace(':', '.')
+
+
+
+

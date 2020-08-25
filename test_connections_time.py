@@ -21,7 +21,7 @@ ip.search_button.click()
 # get time from the module
 now = Time().get_time()
 
-# and check if there is delay on any connection
+# get time from first three connections listed
 first_con = ip.time1.get_time_format()
 second_con = ip.time2.get_time_format()
 third_con = ip.time2.get_time_format()

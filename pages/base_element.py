@@ -18,7 +18,7 @@ class BaseElement(object):
 
 
     def click(self):
-        element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(locator=self.locator))
+        element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(locator=self.locator))
         element.click()
         return None
 
